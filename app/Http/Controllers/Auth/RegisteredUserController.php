@@ -37,6 +37,9 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ], [
+            'email.unique' => 'Esse e-mail já está cadastrado',
+            'password.confirmed' => 'As duas senhas precisam ser iguais.'
         ]);
 
         $user = User::create([
