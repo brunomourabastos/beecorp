@@ -15,18 +15,20 @@
     <td>Valor</td>
   </tr>
 
-  <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td>
-      <a href="">Ver despesa</a>
-      <form action="" method="post">
-        <input type="hidden" name="user" value="">
-        <input type="submit" value="Remover">
-      </form>
-    </td>
-  </tr>
+  @foreach($expenses as $expense)
+    <tr>
+      <td>{{ $expense -> id }}</td>
+      <td>{{ $expense -> description }}</td>
+      <td>{{ $expense -> value }}</td>
+      <td>
+        <a href="">Ver despesa</a>
+        <form action="" method="post">
+          <input type="hidden" name="user" value="">
+          <input type="submit" value="Remover">
+        </form>
+      </td>
+    </tr>
+  @endforeach
 </table>
   
 </body>

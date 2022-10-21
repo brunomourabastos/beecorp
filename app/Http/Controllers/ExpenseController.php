@@ -21,8 +21,11 @@ class ExpenseController extends Controller
 
     public function showAll()
     {
-        $expenses = Expenses::all();
-        dd($expenses);
+        $expenses = Expenses::where('user_id', Auth::user()->id)->get();
+
+        return view('listAllExpenses', [
+            'expenses' => $expenses
+        ]);
     }
 
     /**
@@ -47,6 +50,8 @@ class ExpenseController extends Controller
         $expenses->expense_created_at = $request->expense_created_at;
         $expenses->user_id = Auth::user()->id;
         $expenses->save();
+
+        return(view('expenses'));
     }
 
     /**
