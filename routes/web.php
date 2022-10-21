@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\ExpenseController;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,8 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth/login');
 });
+
+Route::get('/expenses', [ExpenseController::class, 'showForm'])->name('expenses');
+Route::post('/expenses', [ExpenseController::class, 'create'])->name('create.expense');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
