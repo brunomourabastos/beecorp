@@ -19,6 +19,12 @@ class ExpenseController extends Controller
         return(view('expenses'));
     }
 
+    public function showAll()
+    {
+        $expenses = Expenses::all();
+        dd($expenses);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -26,7 +32,14 @@ class ExpenseController extends Controller
      */
     public function create(Request $request)
     {
-        var_dump(($request->except(['_token'])));
+
+       $request->validate([
+            'expense_created_at' => ['required', 'date', 'before_or_equal:today'], 
+            'value' => ['required', 'min:0']
+        ], [
+            'expense_created_at.date' => 'Não lançar datas futuras',
+            'password.confirmed' => 'As duas senhas precisam ser iguais.'
+        ]);
 
         $expenses = new Expenses();
         $expenses->description = $request->description;

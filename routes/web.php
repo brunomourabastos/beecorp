@@ -19,6 +19,7 @@ Route::get('/', function () {
 
 Route::get('/expenses', [ExpenseController::class, 'showForm'])->name('expenses');
 Route::post('/expenses', [ExpenseController::class, 'create'])->name('create.expense');
+Route::get('/expenses/all', [ExpenseController::class, 'showAll'])->name('expenses.listAll');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

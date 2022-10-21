@@ -18,7 +18,7 @@
   <input type="text" name="description" id="description"> 
   <br>
   <label for="value"> Valor</label>
-  <input type="number" name="value" id="value">   
+  <input type="number" min=0 name="value" id="value">   
   <br>
   <label for="expense-date"> Data da Despesa</label>
   <input type="date" name="expense_created_at" id="expense_date">
