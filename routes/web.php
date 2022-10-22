@@ -23,6 +23,7 @@ Route::get('/expenses/all', [ExpenseController::class, 'showAll'])->name('expens
 
 Route::get('/expenses/editexpense/{expense}', [ExpenseController::class, 'formEditExpense']);
 Route::put('/expenses/edit/{expense}', [ExpenseController::class, 'editExpense'])->name('edit.expense');
+Route::delete('/expenses/delete/{expense}', [ExpenseController::class, 'delete'])->name('delete.expense');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

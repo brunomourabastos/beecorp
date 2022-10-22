@@ -22,8 +22,10 @@
       <td>{{ $expense -> value }}</td>
       <td>
         <a href="">Ver despesa</a>
-        <form action="" method="post">
-          <input type="hidden" name="user" value="">
+        <form action="{{ route('delete.expense', ['expense' => $expense->id]) }}" method="post">
+          @csrf
+          @method('delete')
+          <input type="hidden" name="expense" value="{{ $expense->id }} ">
           <input type="submit" value="Remover">
         </form>
       </td>
