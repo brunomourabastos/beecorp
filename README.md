@@ -8,4 +8,4 @@ CRUD de despesas.
 
 Restrição de acesso.
 
-Em desenvolvimento
+Estilo em andamento.
