@@ -21,7 +21,7 @@ Route::get('/expenses', [ExpenseController::class, 'showForm'])->name('expenses'
 Route::post('/expenses', [ExpenseController::class, 'create'])->name('create.expense');
 Route::get('/expenses/all', [ExpenseController::class, 'showAll'])->name('expenses.listAll');
 
-Route::get('/expenses/editexpense/{expense}', [ExpenseController::class, 'formEditExpense']);
+Route::get('/expenses/editexpense/{expense}', [ExpenseController::class, 'formEditExpense'])->name('edit.form');
 Route::put('/expenses/edit/{expense}', [ExpenseController::class, 'editExpense'])->name('edit.expense');
 Route::delete('/expenses/delete/{expense}', [ExpenseController::class, 'delete'])->name('delete.expense');
 
