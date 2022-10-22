@@ -12,8 +12,14 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('create.expense')" :active="request()->routeIs('create.expense')">
                         {{ __('Cadastrar Despesa') }}
+                    </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('expenses.listAll')" :active="request()->routeIs('create.expense')">
+                        {{ __('Minhas despesas') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -34,11 +40,6 @@
                     </x-slot>
 
                     <x-slot name="content">
-                    <x-dropdown-link :href="route('logout')"
-                                    onclick="return view('expenses');
-                                                this.closest('form').submit();">
-                                {{ __('Minhas despesas') }}
-                            </x-dropdown-link>
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf

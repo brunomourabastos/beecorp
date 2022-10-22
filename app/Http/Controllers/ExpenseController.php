@@ -41,7 +41,7 @@ class ExpenseController extends Controller
             'value' => ['required', 'min:0']
         ], [
             'expense_created_at.date' => 'Não lançar datas futuras',
-            'password.confirmed' => 'As duas senhas precisam ser iguais.'
+            'value.min' => 'O valor não pode ser negativo.'
         ]);
 
         $expenses = new Expenses();
@@ -81,9 +81,30 @@ class ExpenseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function formEditExpense(Expenses $expense)
     {
-        //
+        return(view('editExpense', [
+            'expense' => $expense
+        ]));
+    }
+
+    public function editExpense(Expenses $expense, Request $request)
+    {
+        $request->validate([
+            'expense_created_at' => ['required', 'date', 'before_or_equal:today'], 
+            'value' => ['required', 'min:0']
+        ], [
+            'expense_created_at.date' => 'Não lançar datas futuras',
+            'value.min' => 'O valor não pode ser negativo.'
+        ]);
+
+        $expense->description =  $request->description;
+        $expense->value = $request->value;
+        $expense->expense_created_at = $request->expense_created_at;
+        $expense->user_id = Auth::user()->id;
+        $expense->save();
+        
+        return $this->showAll();
     }
 
     /**
@@ -95,7 +116,7 @@ class ExpenseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**
